@@ -1,0 +1,18 @@
+{
+    "contents" : "if(!file.exists(\"./data\")){dir.create(\"./data\")}\nfileUrl <- \"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip\"\n##download.file(fileUrl,destfile=\"./data/Dataset.zip\")\nunzip(zipfile=\"./data/Dataset.zip\",exdir=\"./data\")\npath_rf <- file.path(\"./data\" , \"UCI HAR Dataset\")\nfiles<-list.files(path_rf, recursive=TRUE)\nfiles\ndataActivityTest  <- read.table(file.path(path_rf, \"test\" , \"Y_test.txt\" ),header = FALSE)\ndataActivityTrain <- read.table(file.path(path_rf, \"train\", \"Y_train.txt\"),header = FALSE)\n\ndataSubjectTrain <- read.table(file.path(path_rf, \"train\", \"subject_train.txt\"),header = FALSE)\ndataSubjectTest  <- read.table(file.path(path_rf, \"test\" , \"subject_test.txt\"),header = FALSE)\n\ndataFeaturesTest  <- read.table(file.path(path_rf, \"test\" , \"X_test.txt\" ),header = FALSE)\ndataFeaturesTrain <- read.table(file.path(path_rf, \"train\", \"X_train.txt\"),header = FALSE)\n\nstr(dataActivityTest)\nstr(dataActivityTrain)\n\nstr(dataSubjectTest)\nstr(dataFeaturesTest)\nstr(dataFeaturesTrain)\n\ndataSubject <- rbind(dataSubjectTrain, dataSubjectTest)\ndataActivity<- rbind(dataActivityTrain, dataActivityTest)\ndataFeatures<- rbind(dataFeaturesTrain, dataFeaturesTest)\n\nnames(dataSubject)<-c(\"subject\")\nnames(dataActivity)<- c(\"activity\")\ndataFeaturesNames <- read.table(file.path(path_rf, \"features.txt\"),head=FALSE)\nnames(dataFeatures)<- dataFeaturesNames$V2\n\ndataCombine <- cbind(dataSubject, dataActivity)\nData <- cbind(dataFeatures, dataCombine)\n\nsubdataFeaturesNames<-dataFeaturesNames$V2[grep(\"mean\\\\(\\\\)|std\\\\(\\\\)\", dataFeaturesNames$V2)]\n\nselectedNames<-c(as.character(subdataFeaturesNames), \"subject\", \"activity\" )\nData<-subset(Data,select=selectedNames)\n\nstr(Data)\n\nactivityLabels <- read.table(file.path(path_rf, \"activity_labels.txt\"),header = FALSE)\n\nhead(Data$activity,30)\n\nnames(Data)<-gsub(\"^t\", \"time\", names(Data))\nnames(Data)<-gsub(\"^f\", \"frequency\", names(Data))\nnames(Data)<-gsub(\"Acc\", \"Accelerometer\", names(Data))\nnames(Data)<-gsub(\"Gyro\", \"Gyroscope\", names(Data))\nnames(Data)<-gsub(\"Mag\", \"Magnitude\", names(Data))\nnames(Data)<-gsub(\"BodyBody\", \"Body\", names(Data))\n\nnames(Data)\n\nlibrary(plyr);\nData2<-aggregate(. ~subject + activity, Data, mean)\nData2<-Data2[order(Data2$subject,Data2$activity),]\nwrite.table(Data2, file = \"tidydata.txt\",row.name=FALSE)\n\nlibrary(knitr)\nknit2html(\"CodeBook.md\");\n\n\n",
+    "created" : 1431969204467.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2949277937",
+    "id" : "88ED97F7",
+    "lastKnownWriteTime" : 1432212018,
+    "path" : "E:/coursera/Getting and cleaning data/myProject/GetDataProject/run_analysis.R",
+    "project_path" : "run_analysis.R",
+    "properties" : {
+        "notebook_format" : "pdf_document",
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title><span class="text-emphasized">HTTPS</span> clone URL</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<p>&lt;!DOCTYPE html&gt;
+<html lang="en" class="">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en"></p>
+
+<pre><code>&lt;title&gt;Coursera-Getting-and-Cleaning-Data-Course-Project/CodeBook.md at master Â· OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project&lt;/title&gt;
+&lt;link rel=&quot;search&quot; type=&quot;application/opensearchdescription+xml&quot; href=&quot;/opensearch.xml&quot; title=&quot;GitHub&quot;&gt;
+&lt;link rel=&quot;fluid-icon&quot; href=&quot;https://github.com/fluidicon.png&quot; title=&quot;GitHub&quot;&gt;
+&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;57x57&quot; href=&quot;/apple-touch-icon-114.png&quot;&gt;
+&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;/apple-touch-icon-114.png&quot;&gt;
+&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;/apple-touch-icon-144.png&quot;&gt;
+&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;144x144&quot; href=&quot;/apple-touch-icon-144.png&quot;&gt;
+&lt;meta property=&quot;fb:app_id&quot; content=&quot;1401488693436528&quot;&gt;
+
+  &lt;meta content=&quot;@github&quot; name=&quot;twitter:site&quot; /&gt;&lt;meta content=&quot;summary&quot; name=&quot;twitter:card&quot; /&gt;&lt;meta content=&quot;OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project&quot; name=&quot;twitter:title&quot; /&gt;&lt;meta content=&quot;Contribute to Coursera-Getting-and-Cleaning-Data-Course-Project development by creating an account on GitHub.&quot; name=&quot;twitter:description&quot; /&gt;&lt;meta content=&quot;https://avatars0.githubusercontent.com/u/1264166?v=3&amp;amp;s=400&quot; name=&quot;twitter:image:src&quot; /&gt;
+  &lt;meta content=&quot;GitHub&quot; property=&quot;og:site_name&quot; /&gt;&lt;meta content=&quot;object&quot; property=&quot;og:type&quot; /&gt;&lt;meta content=&quot;https://avatars0.githubusercontent.com/u/1264166?v=3&amp;amp;s=400&quot; property=&quot;og:image&quot; /&gt;&lt;meta content=&quot;OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project&quot; property=&quot;og:title&quot; /&gt;&lt;meta content=&quot;https://github.com/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project&quot; property=&quot;og:url&quot; /&gt;&lt;meta content=&quot;Contribute to Coursera-Getting-and-Cleaning-Data-Course-Project development by creating an account on GitHub.&quot; property=&quot;og:description&quot; /&gt;
+  &lt;meta name=&quot;browser-stats-url&quot; content=&quot;https://api.github.com/_private/browser/stats&quot;&gt;
+&lt;meta name=&quot;browser-errors-url&quot; content=&quot;https://api.github.com/_private/browser/errors&quot;&gt;
+&lt;link rel=&quot;assets&quot; href=&quot;https://assets-cdn.github.com/&quot;&gt;
+&lt;link rel=&quot;web-socket&quot; href=&quot;wss://live.github.com/_sockets/MTE5MDE4NjM6YjYyNzE5OTJlYmMyNDllMDk5MjM5NTUzYmI3ZDBiMzE6MDYzZWY4ODFkMTA5OTUyM2RhYzBkNDA1ZmM4NjI0NGRiMTI0MjEwNTEyM2U1MTlmNjUxOGEwZGM5ODdjYmMyYg==--6cc42a5ad8be1add6d46592c4a0b1f6b05ed9a86&quot;&gt;
+&lt;meta name=&quot;pjax-timeout&quot; content=&quot;1000&quot;&gt;
+&lt;link rel=&quot;sudo-modal&quot; href=&quot;/sessions/sudo_modal&quot;&gt;
+
+&lt;meta name=&quot;msapplication-TileImage&quot; content=&quot;/windows-tile.png&quot;&gt;
+&lt;meta name=&quot;msapplication-TileColor&quot; content=&quot;#ffffff&quot;&gt;
+&lt;meta name=&quot;selected-link&quot; value=&quot;repo_source&quot; data-pjax-transient&gt;
+  &lt;meta name=&quot;google-analytics&quot; content=&quot;UA-3769691-2&quot;&gt;
+
+&lt;meta content=&quot;collector.githubapp.com&quot; name=&quot;octolytics-host&quot; /&gt;&lt;meta content=&quot;collector-cdn.github.com&quot; name=&quot;octolytics-script-host&quot; /&gt;&lt;meta content=&quot;github&quot; name=&quot;octolytics-app-id&quot; /&gt;&lt;meta content=&quot;B7530D29:71E4:9348AF:555A1885&quot; name=&quot;octolytics-dimension-request_id&quot; /&gt;&lt;meta content=&quot;11901863&quot; name=&quot;octolytics-actor-id&quot; /&gt;&lt;meta content=&quot;hrishikeshdeshpande&quot; name=&quot;octolytics-actor-login&quot; /&gt;&lt;meta content=&quot;b71895b8129e3f2eb656a653411ef1bba60ae89518522be4ed5f5663dbea327e&quot; name=&quot;octolytics-actor-hash&quot; /&gt;
+
+&lt;meta content=&quot;Rails, view, blob#show&quot; name=&quot;analytics-event&quot; /&gt;
+&lt;meta class=&quot;js-ga-set&quot; name=&quot;dimension1&quot; content=&quot;Logged In&quot;&gt;
+&lt;meta class=&quot;js-ga-set&quot; name=&quot;dimension2&quot; content=&quot;Header v4&quot;&gt;
+&lt;meta name=&quot;is-dotcom&quot; content=&quot;true&quot;&gt;
+  &lt;meta name=&quot;hostname&quot; content=&quot;github.com&quot;&gt;
+&lt;meta name=&quot;user-login&quot; content=&quot;hrishikeshdeshpande&quot;&gt;
+
+
+&lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://assets-cdn.github.com/favicon.ico&quot;&gt;
+
+
+&lt;meta content=&quot;authenticity_token&quot; name=&quot;csrf-param&quot; /&gt;
+</code></pre>
+
+<p><meta content="+co+PQZ+BZAAFNB0Uxot6ZERuTeGoZrCbhTVgqEGDkRWxO5KG2kp7+53BNqR/w2ESwsSv2rnOrbkyy9+Ifj1Iw==" name="csrf-token" /></p>
+
+<pre><code>&lt;link href=&quot;https://assets-cdn.github.com/assets/github/index-d80e093fe7c48ff920ce83dfd2ad7c02806722220d164b49101ed783098ea618.css&quot; media=&quot;all&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;link href=&quot;https://assets-cdn.github.com/assets/github2/index-99a58ea750b0547d1266460cd4ade0c2c81ed8c524cbba4ea5e3b37e18daec79.css&quot; media=&quot;all&quot; rel=&quot;stylesheet&quot; /&gt;
+
+
+
+
+&lt;meta http-equiv=&quot;x-pjax-version&quot; content=&quot;3390d654b2ba2d620aaab466349790bc&quot;&gt;
+</code></pre>
+
+<p><meta name="description" content="Contribute to Coursera-Getting-and-Cleaning-Data-Course-Project development by creating an account on GitHub.">
+  <meta name="go-import" content="github.com/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project git https://github.com/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project.git"></p>
+
+<p><meta content="1264166" name="octolytics-dimension-user_id" /><meta content="OscarPDR" name="octolytics-dimension-user_login" /><meta content="23278092" name="octolytics-dimension-repository_id" /><meta content="OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project" name="octolytics-dimension-repository_nwo" /><meta content="true" name="octolytics-dimension-repository_public" /><meta content="false" name="octolytics-dimension-repository_is_fork" /><meta content="23278092" name="octolytics-dimension-repository_network_root_id" /><meta content="OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project" name="octolytics-dimension-repository_network_root_nwo" />
+  <link href="https://github.com/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/commits/master.atom" rel="alternate" title="Recent Commits to Coursera-Getting-and-Cleaning-Data-Course-Project:master" type="application/atom+xml"></p>
+
+<p></head></p>
+
+<p><body class="logged_in  env-production windows vis-public page-blob">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+    <div class="wrapper"></p>
+
+<pre><code>    &lt;div class=&quot;header header-logged-in true&quot; role=&quot;banner&quot;&gt;
+</code></pre>
+
+<p><div class="container clearfix"></p>
+
+<pre><code>&lt;a class=&quot;header-logo-invertocat&quot; href=&quot;https://github.com/&quot; data-hotkey=&quot;g d&quot; aria-label=&quot;Homepage&quot; data-ga-click=&quot;Header, go to dashboard, icon:logo&quot;&gt;
+</code></pre>
+
+<p><span class="mega-octicon octicon-mark-github"></span>
+</a></p>
+
+<pre><code>  &lt;div class=&quot;site-search repo-scope js-site-search&quot; role=&quot;search&quot;&gt;
+      &lt;form accept-charset=&quot;UTF-8&quot; action=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/search&quot; class=&quot;js-site-search-form&quot; data-global-search-url=&quot;/search&quot; data-repo-search-url=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/search&quot; method=&quot;get&quot;&gt;&lt;div style=&quot;margin:0;padding:0;display:inline&quot;&gt;&lt;input name=&quot;utf8&quot; type=&quot;hidden&quot; value=&quot;&amp;#x2713;&quot; /&gt;&lt;/div&gt;
+</code></pre>
+
+<p><label class="js-chromeless-input-container form-control">
+    <div class="scope-badge">This repository</div>
+    <input type="text"
+      class="js-site-search-focus js-site-search-field is-clearable chromeless-input"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search"
+      data-global-scope-placeholder="Search GitHub"
+      data-repo-scope-placeholder="Search"
+      tabindex="1"
+      autocapitalize="off">
+  </label>
+</form>
+      </div></p>
+
+<pre><code>  &lt;ul class=&quot;header-nav left&quot; role=&quot;navigation&quot;&gt;
+      &lt;li class=&quot;header-nav-item&quot;&gt;
+        &lt;a href=&quot;/pulls&quot; class=&quot;js-selected-navigation-item header-nav-link&quot; data-ga-click=&quot;New header, click, Nav menu - item:pulls context:user&quot; data-hotkey=&quot;g p&quot; data-selected-links=&quot;/pulls /pulls/assigned /pulls/mentioned /pulls&quot;&gt;
+          Pull requests
+</code></pre>
+
+<p></a>          </li>
+          <li class="header-nav-item">
+            <a href="/issues" class="js-selected-navigation-item header-nav-link" data-ga-click="New header, click, Nav menu - item:issues context:user" data-hotkey="g i" data-selected-links="/issues /issues/assigned /issues/mentioned /issues">
+              Issues
+</a>          </li>
+            <li class="header-nav-item">
+              <a class="header-nav-link" href="https://gist.github.com" data-ga-click="New header, go to gist, text:gist">Gist</a>
+            </li>
+      </ul></p>
+
+<ul class="header-nav user-nav right" id="user-links">
+  <li class="header-nav-item">
+      <span class="js-socket-channel js-updatable-content"
+        data-channel="notification-changed:hrishikeshdeshpande"
+        data-url="/notifications/header">
+      <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+          <span class="mail-status all-read"></span>
+          <span class="octicon octicon-inbox"></span>
+</a>  </span>
+
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link tooltipped tooltipped-s js-menu-target" href="/new"
+       aria-label="Create new..."
+       data-ga-click="New header, create new, icon:add">
+      <span class="octicon octicon-plus left"></span>
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <ul class="dropdown-menu dropdown-menu-sw">
+        
+<li>
+  <a href="/new" data-ga-click="Header, create new repository, icon:repo"><span class="octicon octicon-repo"></span> New repository</a>
+</li>
+<li>
+  <a href="/organizations/new" data-ga-click="Header, create new organization, icon:organization"><span class="octicon octicon-organization"></span> New organization</a>
+</li>
+
+
+  <li class="dropdown-divider"></li>
+  <li class="dropdown-header">
+    <span title="OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project">This repository</span>
+  </li>
+    <li>
+      <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/issues/new" data-ga-click="Header, create new issue, icon:issue"><span class="octicon octicon-issue-opened"></span> New issue</a>
+    </li>
+
+      </ul>
+    </div>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link name tooltipped tooltipped-s js-menu-target" href="#"
+       aria-label="View profile and more"
+       data-ga-click="New header, show menu, icon:avatar">
+      <img alt="@hrishikeshdeshpande" class="avatar" data-user="11901863" height="20" src="https://avatars0.githubusercontent.com/u/11901863?v=3&amp;s=40" width="20" />
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <ul class="dropdown-menu dropdown-menu-sw">
+        <li>
+          <a href="/hrishikeshdeshpande" data-ga-click="New header, go to profile, text:view profile">
+            <span class="octicon octicon-person"></span>
+            View profile
+          </a>
+        </li>
+
+        <li>
+          <a href="/stars" data-ga-click="New header, go to starred repos, text:starred repositories">
+            <span class="octicon octicon-star"></span>
+            Starred repositories
+          </a>
+        </li>
+
+        <li>
+          <a href="/explore" data-ga-click="New header, go to explore, text:explore">
+            <span class="octicon octicon-telescope"></span>
+            Explore
+          </a>
+        </li>
+
+        <li>
+          <a href="https://help.github.com" data-ga-click="New header, go to help, text:help">
+            <span class="octicon octicon-question"></span>
+            Help
+          </a>
+        </li>
+
+        <li class="dropdown-divider"></li>
+
+
+        <li>
+          <a href="/settings/profile" data-ga-click="New header, go to settings, icon:settings">
+            <span class="octicon octicon-gear"></span>
+            Settings
+          </a>
+        </li>
+
+        <li>
+          <form accept-charset="UTF-8" action="/logout" class="logout-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="IiVSQE0+W4rTOYDvud9vrqao0e/ySb463j/wFxoipnsI7YUayzvMMxndBQQV2uDGV2Nz/zcGtnQeznJwJLGYyg==" /></div>
+            <button class="sign-out-button" data-ga-click="New header, sign out, icon:logout">
+              <span class="octicon octicon-sign-out"></span>
+              Sign out
+            </button>
+</form>        </li>
+      </ul>
+    </div>
+  </li>
+</ul>
+
+<p></div>
+</div></p>
+
+<pre><code>  &lt;div id=&quot;start-of-content&quot; class=&quot;accessibility-aid&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;site&quot; itemscope itemtype=&quot;http://schema.org/WebPage&quot;&gt;
+&lt;div id=&quot;js-flash-container&quot;&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;pagehead repohead instapaper_ignore readability-menu&quot;&gt;
+  &lt;div class=&quot;container&quot;&gt;
+</code></pre>
+
+<ul class="pagehead-actions">
+
+  <li>
+      <form accept-charset="UTF-8" action="/notifications/subscribe" class="js-social-container" data-autosubmit="true" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="SjZLoHYKBfv/JyTxLZuOjyacuZ5b9SrXxXdMqvXFYhfRVAOSsXddXz/nUTxCXv+EIkytobWvhl7FGwzTHPQu/w==" /></div>    <input id="repository_id" name="repository_id" type="hidden" value="23278092" />
+
+      <div class="select-menu js-menu-container js-select-menu">
+        <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/subscription"
+          class="btn btn-sm btn-with-count select-menu-button js-menu-target" role="button" tabindex="0" aria-haspopup="true"
+          data-ga-click="Repository, click Watch settings, action:blob#show">
+          <span class="js-select-button">
+            <span class="octicon octicon-eye"></span>
+            Watch
+          </span>
+        </a>
+        <a class="social-count js-social-count" href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/watchers">
+          1
+        </a>
+
+        <div class="select-menu-modal-holder">
+          <div class="select-menu-modal subscription-menu-modal js-menu-content" aria-hidden="true">
+            <div class="select-menu-header">
+              <span class="select-menu-title">Notifications</span>
+              <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+            </div>
+
+            <div class="select-menu-list js-navigation-container" role="menu">
+
+              <div class="select-menu-item js-navigation-item selected" role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input checked="checked" id="do_included" name="do" type="radio" value="included" />
+                  <span class="select-menu-item-heading">Not watching</span>
+                  <span class="description">Be notified when participating or @mentioned.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-eye"></span>
+                    Watch
+                  </span>
+                </div>
+              </div>
+
+              <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input id="do_subscribed" name="do" type="radio" value="subscribed" />
+                  <span class="select-menu-item-heading">Watching</span>
+                  <span class="description">Be notified of all conversations.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-eye"></span>
+                    Unwatch
+                  </span>
+                </div>
+              </div>
+
+              <div class="select-menu-item js-navigation-item " role="menuitem" tabindex="0">
+                <span class="select-menu-item-icon octicon octicon-check"></span>
+                <div class="select-menu-item-text">
+                  <input id="do_ignore" name="do" type="radio" value="ignore" />
+                  <span class="select-menu-item-heading">Ignoring</span>
+                  <span class="description">Never be notified.</span>
+                  <span class="js-select-button-text hidden-select-button-text">
+                    <span class="octicon octicon-mute"></span>
+                    Stop ignoring
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+</form>
+  </li>
+
+  <li>
+    
+  <div class="js-toggler-container js-social-container starring-container ">
+
+    <form accept-charset="UTF-8" action="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/unstar" class="js-toggler-form starred js-unstar-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="YMnLd3JWLZpP5B+5ianGaqJjYtOMkJKO5stN/9B6oAL+XKNNwKne3hNIo/ZOb5ajfgm3zc1O9CdSqBdCvBw8Lw==" /></div>
+      <button
+        class="btn btn-sm btn-with-count js-toggler-target"
+        aria-label="Unstar this repository" title="Unstar OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project"
+        data-ga-click="Repository, click unstar button, action:blob#show; text:Unstar">
+        <span class="octicon octicon-star"></span>
+        Unstar
+      </button>
+        <a class="social-count js-social-count" href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/stargazers">
+          1
+        </a>
+</form>
+    <form accept-charset="UTF-8" action="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/star" class="js-toggler-form unstarred js-star-button" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="vg3Xyayo5B3Lk3GnAcujQHnR5wIUb6n/zvSjf5GBKXvD92NhwUReQdqEZYQnWpOIkaN+8kZi3tU8D5vK3IHyhw==" /></div>
+      <button
+        class="btn btn-sm btn-with-count js-toggler-target"
+        aria-label="Star this repository" title="Star OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project"
+        data-ga-click="Repository, click star button, action:blob#show; text:Star">
+        <span class="octicon octicon-star"></span>
+        Star
+      </button>
+        <a class="social-count js-social-count" href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/stargazers">
+          1
+        </a>
+</form>  </div>
+
+  </li>
+
+        <li>
+          <form accept-charset="UTF-8" action="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/fork" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="nRl8tvygI2Xcw5vnr3lyzWgnkTBkqYXISy7odQO/ehRtufomcfTmFhJd9e1HGTigXRvCOATht5sFRZHVeBjZ8A==" /></div>
+            <button
+                type="submit"
+                class="btn btn-sm btn-with-count"
+                data-ga-click="Repository, show fork modal, action:blob#show; text:Fork"
+                title="Fork your own copy of OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project to your account"
+                aria-label="Fork your own copy of OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project to your account">
+              <span class="octicon octicon-repo-forked"></span>
+              Fork
+            </button>
+            <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/network" class="social-count">48</a>
+</form>        </li>
+
+</ul>
+
+<pre><code>    &lt;h1 itemscope itemtype=&quot;http://data-vocabulary.org/Breadcrumb&quot; class=&quot;entry-title public&quot;&gt;
+      &lt;span class=&quot;mega-octicon octicon-repo&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;author&quot;&gt;&lt;a href=&quot;/OscarPDR&quot; class=&quot;url fn&quot; itemprop=&quot;url&quot; rel=&quot;author&quot;&gt;&lt;span itemprop=&quot;title&quot;&gt;OscarPDR&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;&lt;!--
+   --&gt;&lt;span class=&quot;path-divider&quot;&gt;/&lt;/span&gt;&lt;!--
+   --&gt;&lt;strong&gt;&lt;a href=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project&quot; class=&quot;js-current-repository&quot; data-pjax=&quot;#js-repo-pjax-container&quot;&gt;Coursera-Getting-and-Cleaning-Data-Course-Project&lt;/a&gt;&lt;/strong&gt;
+
+      &lt;span class=&quot;page-context-loader&quot;&gt;
+        &lt;img alt=&quot;&quot; height=&quot;16&quot; src=&quot;https://assets-cdn.github.com/assets/spinners/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif&quot; width=&quot;16&quot; /&gt;
+      &lt;/span&gt;
+
+    &lt;/h1&gt;
+  &lt;/div&gt;&lt;!-- /.container --&gt;
+&lt;/div&gt;&lt;!-- /.repohead --&gt;
+
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;repository-with-sidebar repo-container new-discussion-timeline  &quot;&gt;
+    &lt;div class=&quot;repository-sidebar clearfix&quot;&gt;
+</code></pre>
+
+<p><nav class="sunken-menu repo-nav js-repo-nav js-sidenav-container-pjax js-octicon-loaders"
+     role="navigation"
+     data-pjax="#js-repo-pjax-container"
+     data-issue-count-url="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/issues/counts">
+  <ul class="sunken-menu-group">
+    <li class="tooltipped tooltipped-w" aria-label="Code">
+      <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project" aria-label="Code" class="selected js-selected-navigation-item sunken-menu-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project">
+        <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+        <img alt="" class="mini-loader" height="16" src="https://assets-cdn.github.com/assets/spinners/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif" width="16" />
+</a>    </li></p>
+
+<pre><code>  &lt;li class=&quot;tooltipped tooltipped-w&quot; aria-label=&quot;Issues&quot;&gt;
+    &lt;a href=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/issues&quot; aria-label=&quot;Issues&quot; class=&quot;js-selected-navigation-item sunken-menu-item&quot; data-hotkey=&quot;g i&quot; data-selected-links=&quot;repo_issues repo_labels repo_milestones /OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/issues&quot;&gt;
+      &lt;span class=&quot;octicon octicon-issue-opened&quot;&gt;&lt;/span&gt; &lt;span class=&quot;full-word&quot;&gt;Issues&lt;/span&gt;
+      &lt;span class=&quot;js-issue-replace-counter&quot;&gt;&lt;/span&gt;
+      &lt;img alt=&quot;&quot; class=&quot;mini-loader&quot; height=&quot;16&quot; src=&quot;https://assets-cdn.github.com/assets/spinners/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif&quot; width=&quot;16&quot; /&gt;
+</code></pre>
+
+<p></a>      </li></p>
+
+<pre><code>&lt;li class=&quot;tooltipped tooltipped-w&quot; aria-label=&quot;Pull requests&quot;&gt;
+  &lt;a href=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/pulls&quot; aria-label=&quot;Pull requests&quot; class=&quot;js-selected-navigation-item sunken-menu-item&quot; data-hotkey=&quot;g p&quot; data-selected-links=&quot;repo_pulls /OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/pulls&quot;&gt;
+      &lt;span class=&quot;octicon octicon-git-pull-request&quot;&gt;&lt;/span&gt; &lt;span class=&quot;full-word&quot;&gt;Pull requests&lt;/span&gt;
+      &lt;span class=&quot;js-pull-replace-counter&quot;&gt;&lt;/span&gt;
+      &lt;img alt=&quot;&quot; class=&quot;mini-loader&quot; height=&quot;16&quot; src=&quot;https://assets-cdn.github.com/assets/spinners/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif&quot; width=&quot;16&quot; /&gt;
+</code></pre>
+
+<p></a>    </li></p>
+
+<pre><code>  &lt;li class=&quot;tooltipped tooltipped-w&quot; aria-label=&quot;Wiki&quot;&gt;
+    &lt;a href=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/wiki&quot; aria-label=&quot;Wiki&quot; class=&quot;js-selected-navigation-item sunken-menu-item&quot; data-hotkey=&quot;g w&quot; data-selected-links=&quot;repo_wiki /OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/wiki&quot;&gt;
+      &lt;span class=&quot;octicon octicon-book&quot;&gt;&lt;/span&gt; &lt;span class=&quot;full-word&quot;&gt;Wiki&lt;/span&gt;
+      &lt;img alt=&quot;&quot; class=&quot;mini-loader&quot; height=&quot;16&quot; src=&quot;https://assets-cdn.github.com/assets/spinners/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif&quot; width=&quot;16&quot; /&gt;
+</code></pre>
+
+<p></a>      </li>
+  </ul>
+  <div class="sunken-menu-separator"></div>
+  <ul class="sunken-menu-group"></p>
+
+<pre><code>&lt;li class=&quot;tooltipped tooltipped-w&quot; aria-label=&quot;Pulse&quot;&gt;
+  &lt;a href=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/pulse&quot; aria-label=&quot;Pulse&quot; class=&quot;js-selected-navigation-item sunken-menu-item&quot; data-selected-links=&quot;pulse /OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/pulse&quot;&gt;
+    &lt;span class=&quot;octicon octicon-pulse&quot;&gt;&lt;/span&gt; &lt;span class=&quot;full-word&quot;&gt;Pulse&lt;/span&gt;
+    &lt;img alt=&quot;&quot; class=&quot;mini-loader&quot; height=&quot;16&quot; src=&quot;https://assets-cdn.github.com/assets/spinners/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif&quot; width=&quot;16&quot; /&gt;
+</code></pre>
+
+<p></a>    </li></p>
+
+<pre><code>&lt;li class=&quot;tooltipped tooltipped-w&quot; aria-label=&quot;Graphs&quot;&gt;
+  &lt;a href=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/graphs&quot; aria-label=&quot;Graphs&quot; class=&quot;js-selected-navigation-item sunken-menu-item&quot; data-selected-links=&quot;repo_graphs repo_contributors /OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/graphs&quot;&gt;
+    &lt;span class=&quot;octicon octicon-graph&quot;&gt;&lt;/span&gt; &lt;span class=&quot;full-word&quot;&gt;Graphs&lt;/span&gt;
+    &lt;img alt=&quot;&quot; class=&quot;mini-loader&quot; height=&quot;16&quot; src=&quot;https://assets-cdn.github.com/assets/spinners/octocat-spinner-32-e513294efa576953719e4e2de888dd9cf929b7d62ed8d05f25e731d02452ab6c.gif&quot; width=&quot;16&quot; /&gt;
+</code></pre>
+
+<p></a>    </li>
+  </ul></p>
+
+<p></nav></p>
+
+<pre><code>          &lt;div class=&quot;only-with-full-nav&quot;&gt;
+</code></pre>
+
+<div class="clone-url open"
+  data-protocol-type="http"
+  data-url="/users/set_protocol?protocol_selector=http&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">HTTPS</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://github.com/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+<div class="clone-url "
+  data-protocol-type="ssh"
+  data-url="/users/set_protocol?protocol_selector=ssh&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">SSH</span> clone URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="git@github.com:OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project.git" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+<div class="clone-url "
+  data-protocol-type="subversion"
+  data-url="/users/set_protocol?protocol_selector=subversion&amp;protocol_type=clone">
+  <h3><span class="text-emphasized">Subversion</span> checkout URL</h3>
+  <div class="input-group js-zeroclipboard-container">
+    <input type="text" class="input-mini input-monospace js-url-field js-zeroclipboard-target"
+           value="https://github.com/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project" readonly="readonly">
+    <span class="input-group-button">
+      <button aria-label="Copy to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+<p class="clone-options">You can clone with
+  <a href="#" class="js-clone-selector" data-protocol="http">HTTPS</a>, <a href="#" class="js-clone-selector" data-protocol="ssh">SSH</a>, or <a href="#" class="js-clone-selector" data-protocol="subversion">Subversion</a>.
+  <a href="https://help.github.com/articles/which-remote-url-should-i-use" class="help tooltipped tooltipped-n" aria-label="Get help on which URL is right for you.">
+    <span class="octicon octicon-question"></span>
+  </a>
+</p>
+
+<p><a href="https://windows.github.com" class="btn btn-sm sidebar-button" title="Save OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project to your computer and use it in GitHub Desktop." aria-label="Save OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project to your computer and use it in GitHub Desktop.">
+    <span class="octicon octicon-device-desktop"></span>
+    Clone in Desktop
+  </a></p>
+
+<pre><code>            &lt;a href=&quot;/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/archive/master.zip&quot;
+               class=&quot;btn btn-sm sidebar-button&quot;
+               aria-label=&quot;Download the contents of OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project as a zip file&quot;
+               title=&quot;Download the contents of OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project as a zip file&quot;
+               rel=&quot;nofollow&quot;&gt;
+              &lt;span class=&quot;octicon octicon-cloud-download&quot;&gt;&lt;/span&gt;
+              Download ZIP
+            &lt;/a&gt;
+          &lt;/div&gt;
+    &lt;/div&gt;&lt;!-- /.repository-sidebar --&gt;
+
+    &lt;div id=&quot;js-repo-pjax-container&quot; class=&quot;repository-content context-loader-container&quot; data-pjax-container&gt;
+</code></pre>
+
+<p><a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/blob/9e4084dc410069ef21d2f78ff1f74b453d239f58/CodeBook.md" class="hidden js-permalink-shortcut" data-hotkey="y">Permalink</a></p>
+
+<!-- blob contrib key: blob_contributors:v21:a21f0ce5a2aee4a2335686bdd4013256 -->
+
+<div class="file-navigation js-zeroclipboard-container">
+  
+<div class="select-menu js-menu-container js-select-menu left">
+  <span class="btn btn-sm select-menu-button js-menu-target css-truncate" data-hotkey="w"
+    data-master-branch="master"
+    data-ref="master"
+    title="master"
+    role="button" aria-label="Switch branches or tags" tabindex="0" aria-haspopup="true">
+    <span class="octicon octicon-git-branch"></span>
+    <i>branch:</i>
+    <span class="js-select-button css-truncate-target">master</span>
+  </span>
+
+  <div class="select-menu-modal-holder js-menu-content js-navigation-container" data-pjax aria-hidden="true">
+
+    <div class="select-menu-modal">
+      <div class="select-menu-header">
+        <span class="select-menu-title">Switch branches/tags</span>
+        <span class="octicon octicon-x js-menu-close" role="button" aria-label="Close"></span>
+      </div>
+
+      <div class="select-menu-filters">
+        <div class="select-menu-text-filter">
+          <input type="text" aria-label="Filter branches/tags" id="context-commitish-filter-field" class="js-filterable-field js-navigation-enable" placeholder="Filter branches/tags">
+        </div>
+        <div class="select-menu-tabs">
+          <ul>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="branches" data-filter-placeholder="Filter branches/tags" class="js-select-menu-tab">Branches</a>
+            </li>
+            <li class="select-menu-tab">
+              <a href="#" data-tab-filter="tags" data-filter-placeholder="Find a tagâ€¦" class="js-select-menu-tab">Tags</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="branches">
+
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+            <a class="select-menu-item js-navigation-item js-navigation-open selected"
+               href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/blob/master/CodeBook.md"
+               data-name="master"
+               data-skip-pjax="true"
+               rel="nofollow">
+              <span class="select-menu-item-icon octicon octicon-check"></span>
+              <span class="select-menu-item-text css-truncate-target" title="master">
+                master
+              </span>
+            </a>
+        </div>
+
+          <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+      <div class="select-menu-list select-menu-tab-bucket js-select-menu-tab-bucket" data-tab-filter="tags">
+        <div data-filterable-for="context-commitish-filter-field" data-filterable-type="substring">
+
+
+        </div>
+
+        <div class="select-menu-no-results">Nothing to show</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<p><div class="btn-group right">
+    <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/find/master"
+          class="js-show-file-finder btn btn-sm empty-icon tooltipped tooltipped-s"
+          data-pjax
+          data-hotkey="t"
+          aria-label="Quickly jump between files">
+      <span class="octicon octicon-list-unordered"></span>
+    </a>
+    <button aria-label="Copy file path to clipboard" class="js-zeroclipboard btn btn-sm zeroclipboard-button tooltipped tooltipped-s" data-copied-hint="Copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+  </div></p>
+
+<p><div class="breadcrumb js-zeroclipboard-target">
+    <span class='repo-root js-repo-root'><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project" class="" data-branch="master" data-direction="back" data-pjax="true" itemscope="url"><span itemprop="title">Coursera-Getting-and-Cleaning-Data-Course-Project</span></a></span></span><span class="separator">/</span><strong class="final-path">CodeBook.md</strong>
+  </div>
+</div></p>
+
+<p><div class="commit file-history-tease">
+    <div class="file-history-tease-header">
+        <img alt="@OscarPDR" class="avatar" data-user="1264166" height="24" src="https://avatars2.githubusercontent.com/u/1264166?v=3&amp;s=48" width="24" />
+        <span class="author"><a href="/OscarPDR" rel="author">OscarPDR</a></span>
+        <time datetime="2014-08-24T14:20:27Z" is="relative-time">Aug 24, 2014</time>
+        <div class="commit-title">
+            <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/commit/9e4084dc410069ef21d2f78ff1f74b453d239f58" class="message" data-pjax="true" title="Update CodeBook.md">Update CodeBook.md</a>
+        </div>
+    </div></p>
+
+<pre><code>&lt;div class=&quot;participation&quot;&gt;
+  &lt;p class=&quot;quickstat&quot;&gt;
+    &lt;a href=&quot;#blob_contributors_box&quot; rel=&quot;facebox&quot;&gt;
+      &lt;strong&gt;1&lt;/strong&gt;
+       contributor
+    &lt;/a&gt;
+  &lt;/p&gt;
+
+&lt;/div&gt;
+&lt;div id=&quot;blob_contributors_box&quot; style=&quot;display:none&quot;&gt;
+  &lt;h2 class=&quot;facebox-header&quot;&gt;Users who have contributed to this file&lt;/h2&gt;
+  &lt;ul class=&quot;facebox-user-list&quot;&gt;
+      &lt;li class=&quot;facebox-user-list-item&quot;&gt;
+        &lt;img alt=&quot;@OscarPDR&quot; data-user=&quot;1264166&quot; height=&quot;24&quot; src=&quot;https://avatars2.githubusercontent.com/u/1264166?v=3&amp;amp;s=48&quot; width=&quot;24&quot; /&gt;
+        &lt;a href=&quot;/OscarPDR&quot;&gt;OscarPDR&lt;/a&gt;
+      &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p></div></p>
+
+<div class="file">
+  <div class="file-header">
+    <div class="file-actions">
+
+      <div class="btn-group">
+        <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/raw/master/CodeBook.md" class="btn btn-sm " id="raw-url">Raw</a>
+          <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/blame/master/CodeBook.md" class="btn btn-sm js-update-url-with-hash">Blame</a>
+        <a href="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/commits/master/CodeBook.md" class="btn btn-sm " rel="nofollow">History</a>
+      </div>
+
+        <a class="octicon-btn tooltipped tooltipped-nw"
+           href="https://windows.github.com"
+           aria-label="Open this file in GitHub for Windows"
+           data-ga-click="Repository, open with desktop, type:windows">
+            <span class="octicon octicon-device-desktop"></span>
+        </a>
+
+            <form accept-charset="UTF-8" action="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/edit/master/CodeBook.md" class="inline-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="OBffiNMYGiv+J3O05rn6QPRTfUP6GUbRmR7rqAkPW5uYdz9iogu/tasZPPwFM7+3R2F7DIIUxRA5LzWiDIkgdg==" /></div>
+              <button class="octicon-btn tooltipped tooltipped-n" type="submit" aria-label="Fork this project and edit the file" data-hotkey="e" data-disable-with>
+                <span class="octicon octicon-pencil"></span>
+              </button>
+</form>
+          <form accept-charset="UTF-8" action="/OscarPDR/Coursera-Getting-and-Cleaning-Data-Course-Project/delete/master/CodeBook.md" class="inline-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="hJWhXVU4nHKuaLOEjdjwwGVEPqFojRE4Qrrg7Wp7HlXBWdb6lAZNLZFSUA6db60+ZCkxU8XBuZ0TRFddLz2ldg==" /></div>
+            <button class="octicon-btn octicon-btn-danger tooltipped tooltipped-n" type="submit" aria-label="Fork this project and delete this file" data-disable-with>
+              <span class="octicon octicon-trashcan"></span>
+            </button>
+</form>    </div>
+
+    <div class="file-info">
+        19 lines (14 sloc)
+        <span class="file-info-divider"></span>
+      1.706 kb
+    </div>
+  </div>
+    <div id="readme" class="blob instapaper_body">
+    <article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>
+<a id="user-content-introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>The script <code>run_analysis.R</code>performs the 5 steps described in the course project&rsquo;s definition.</p>
+
+<ul>
+<li>First, all the similar data is merged using the <code>rbind()</code> function. By similar, we address those files having the same number of columns and referring to the same entities.</li>
+<li>Then, only those columns with the mean and standard deviation measures are taken from the whole dataset. After extracting these columns, they are given the correct names, taken from <code>features.txt</code>.</li>
+<li>As activity data is addressed with values 1:6, we take the activity names and IDs from <code>activity_labels.txt</code> and they are substituted in the dataset.</li>
+<li>On the whole dataset, those columns with vague column names are corrected.</li>
+<li>Finally, we generate a new dataset with all the average measures for each subject and activity type (30 subjects * 6 activities = 180 rows). The output file is called <code>averages_data.txt</code>, and uploaded to this repository.</li>
+</ul>
+
+<h1>
+<a id="user-content-variables" class="anchor" href="#variables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variables</h1>
+
+<ul>
+<li>
+<code>x_train</code>, <code>y_train</code>, <code>x_test</code>, <code>y_test</code>, <code>subject_train</code> and <code>subject_test</code> contain the data from the downloaded files.</li>
+<li>
+<code>x_data</code>, <code>y_data</code> and <code>subject_data</code> merge the previous datasets to further analysis.</li>
+<li>
+<code>features</code> contains the correct names for the <code>x_data</code> dataset, which are applied to the column names stored in <code>mean_and_std_features</code>, a numeric vector used to extract the desired data.</li>
+<li>A similar approach is taken with activity names through the <code>activities</code> variable.</li>
+<li>
+<code>all_data</code> merges <code>x_data</code>, <code>y_data</code> and <code>subject_data</code> in a big dataset.</li>
+<li>Finally, <code>averages_data</code> contains the relevant averages which will be later stored in a <code>.txt</code> file. <code>ddply()</code> from the plyr package is used to apply <code>colMeans()</code> and ease the development.</li>
+</ul>
+</article>
+  </div>
+
+</div>
+
+<p><a href="#jump-to-line" rel="facebox[.linejump]" data-hotkey="l" style="display:none">Jump to Line</a></p>
+
+<div id="jump-to-line" style="display:none">
+  <form accept-charset="UTF-8" action="" class="js-jump-to-line-form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+    <input class="linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" autofocus>
+    <button type="submit" class="btn">Go</button>
+</form></div>
+
+        </div>
+
+      </div><!-- /.repo-container -->
+      <div class="modal-backdrop"></div>
+    </div><!-- /.container -->
+  </div><!-- /.site -->
+
+
+    </div><!-- /.wrapper -->
+
+      <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2015 <span title="0.05534s from github-fe129-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<pre><code>&lt;div class=&quot;fullscreen-overlay js-fullscreen-overlay&quot; id=&quot;fullscreen_overlay&quot;&gt;
+</code></pre>
+
+<p><div class="fullscreen-container js-suggester-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="fullscreen-contents js-fullscreen-contents" placeholder=""></textarea>
+      <div class="suggester-container">
+        <div class="suggester fullscreen-suggester js-suggester js-navigation-container"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="#" class="exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w" aria-label="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="#" class="theme-switcher js-theme-switcher tooltipped tooltipped-w"
+      aria-label="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div></p>
+
+<pre><code>&lt;div id=&quot;ajax-error-message&quot; class=&quot;flash flash-error&quot;&gt;
+  &lt;span class=&quot;octicon octicon-alert&quot;&gt;&lt;/span&gt;
+  &lt;a href=&quot;#&quot; class=&quot;octicon octicon-x flash-close js-ajax-error-dismiss&quot; aria-label=&quot;Dismiss error&quot;&gt;&lt;/a&gt;
+  Something went wrong with that request. Please try again.
+&lt;/div&gt;
+
+
+  &lt;script crossorigin=&quot;anonymous&quot; src=&quot;https://assets-cdn.github.com/assets/frameworks-5c08de317e4054ec200d36d3b1361ddd3cb30c05c9070a9d72862ee28ab1d7f9.js&quot;&gt;&lt;/script&gt;
+  &lt;script async=&quot;async&quot; crossorigin=&quot;anonymous&quot; src=&quot;https://assets-cdn.github.com/assets/github/index-4b5e25d2b7e42e2684bb5e4f71025765b836b41c07c5fe423457380771bcdc4e.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p></body>
+</html></p>
+
+</body>
+
+</html>
