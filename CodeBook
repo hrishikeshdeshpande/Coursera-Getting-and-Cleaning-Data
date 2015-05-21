@@ -1,0 +1,9 @@
+#Variables
+
+Downloaded files contain the data for following: X_train, Y_train, X_test, Y_test, subject_train, and subject_test.
+Downloaded data is assigned to: dataActivityTest for y_test,dataActivityTrain for y_train,dataSubjectTest for subject_test, dataSubjectTrain for subject_train, dataFeaturesTest for X_test, and dataFeaturesTrain for X_train, 
+dataSubject, dataActivity, and data Features are assigned to the combined datasets for test and train sets from above for eac of the subject, activity, and features datasets.
+dataFeatureNames is assigned to the extracted names from features.txt
+subdataFeatureNames is assigned to the mean and standard deviations for each of categories.
+Data and Data2 merge x_data, y_data and subject_data in the complete dataset.
+tidydata contains the output.
