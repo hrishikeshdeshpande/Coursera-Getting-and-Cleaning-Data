@@ -1,4 +1,9 @@
 # Coursera-Getting-and-Cleaning-Data
+#Contents
+The run_analysis.R file has the code
+The CodeBook.md file has the variable descriptions
+The data is in the data directory
+The output is the tidydata.txt file
 #create directory
 if(!file.exists("./data")){dir.create("./data")}
 #fetch the data
@@ -25,7 +30,7 @@ str(dataActivityTrain)
 str(dataSubjectTest)
 str(dataFeaturesTest)
 str(dataFeaturesTrain)
-@combine the data
+#combine the data from the datasets
 dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)
 dataActivity<- rbind(dataActivityTrain, dataActivityTest)
 dataFeatures<- rbind(dataFeaturesTrain, dataFeaturesTest)
